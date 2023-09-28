@@ -13,7 +13,6 @@ Console.Clear();
 Console.ForegroundColor = ConsoleColor.Green;
 
 
-
 string Option = string.Empty;
 bool game = true;
 
@@ -46,19 +45,12 @@ while (true)
         continue;
 
     }
-
-
-
 }
 
 Player firstName = new Player();
 Player secondName = new Player();
 string playerOne = string.Empty;
 string playerTwo = string.Empty;
-string choiceOne = string.Empty;
-string choiceTwo = string.Empty;
-int point1 = 0;
-int point2 = 0;
 
 
 while (Option == "pvp") // Player VS Player
@@ -116,18 +108,18 @@ while (Option == "pvp") // Player VS Player
         Console.WriteLine("1. " + input.Rock);
         Console.WriteLine("2. " + input.Paper);
         Console.WriteLine("3. " + input.Scissors);
-        choiceOne = Console.ReadLine();
+        firstName.choice = Console.ReadLine();
         Console.Clear();
 
 
-        if (choiceOne != "1" && choiceOne != "2" && choiceOne != "3")
+        if (firstName.choice != "1" && firstName.choice != "2" && firstName.choice != "3")
         {
             Console.WriteLine("You did'nt pick right number");
             continue;
 
         }
 
-        while (choiceOne == "1" || choiceOne == "2" || choiceOne == "3")
+        while (firstName.choice == "1" || firstName.choice == "2" || firstName.choice == "3")
         {
 
             Console.WriteLine("It's your turn " + playerTwo + " (With numbers)");
@@ -136,10 +128,10 @@ while (Option == "pvp") // Player VS Player
             Console.WriteLine("1. " + input.Rock);
             Console.WriteLine("2. " + input.Paper);
             Console.WriteLine("3. " + input.Scissors);
-            choiceTwo = Console.ReadLine();
+            secondName.choice = Console.ReadLine();
             Console.Clear();
 
-            if (choiceTwo != "1" && choiceTwo != "2" && choiceTwo != "3")
+            if (secondName.choice != "1" && secondName.choice != "2" && secondName.choice != "3")
             {
                 Console.Clear();
                 Console.WriteLine("You did'nt pick right");
@@ -156,35 +148,35 @@ while (Option == "pvp") // Player VS Player
 
         }
 
-        if (choiceOne == choiceTwo)
+        if (firstName.choice == secondName.choice)
         {
             Console.WriteLine("Draw, no one was given any points");
             Console.WriteLine("Try agian!");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(playerOne + "Have: " + point1 + " point");
-            Console.WriteLine(playerTwo + "Have: " + point2 + " point");
+            Console.WriteLine(playerOne + " Have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " Have: " + secondName.point + " point");
 
 
         }
         //// This gives player 1, 1 point
         else if
-            (choiceOne == "1" && choiceTwo == "3" ||
-            choiceOne == "2" && choiceTwo == "1" ||
-            choiceOne == "3" && choiceTwo == "2")
+            (firstName.choice == "1" && secondName.choice == "3" ||
+            firstName.choice == "2" && secondName.choice == "1" ||
+            firstName.choice == "3" && secondName.choice == "2")
         {
-            point1++;
-            Console.WriteLine(playerOne + " wins and get one point! And have: " + point1 + " point");
-            Console.WriteLine(playerTwo + " loss and get zero point! And have: " + point2 + " point");
+            firstName.point++;
+            Console.WriteLine(playerOne + " wins and get one point! And have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " loss and get zero point! And have: " + secondName.point + " point");
             Console.WriteLine();
             Console.WriteLine();
         }
 
         else // This gives player 2, 1 point
         {
-            point2++;
-            Console.WriteLine(playerOne + " loss and get one point! And have: " + point1 + " point");
-            Console.WriteLine(playerTwo + " wins and get zero point! And have: " + point2 + " point");
+            secondName.point++;
+            Console.WriteLine(playerOne + " loss and get one point! And have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " wins and get zero point! And have: " + secondName.point + " point");
             Console.WriteLine();
             Console.WriteLine();
 
@@ -194,13 +186,13 @@ while (Option == "pvp") // Player VS Player
 
 
         // Reach the goal
-        if (point1 == 2 || point2 == 2)
+        if (firstName.point == 2 || secondName.point == 2)
         {
             break;
         }
 
-        choiceOne = string.Empty;
-        choiceTwo = string.Empty;
+        firstName.choice = string.Empty;
+        secondName.choice = string.Empty;
     }
 
     break;
@@ -216,7 +208,7 @@ while (Option == "bot") // Player VS Computer
     //BOT name
     playerTwo = "Boten Anna";
 
-    
+
     Console.Write("Enter your name: ");
     firstName.name = Console.ReadLine();
 
@@ -231,17 +223,19 @@ while (Option == "bot") // Player VS Computer
         Console.WriteLine("1. " + input.Rock);
         Console.WriteLine("2. " + input.Paper);
         Console.WriteLine("3. " + input.Scissors);
-        choiceOne = Console.ReadLine();
+        firstName.choice = Console.ReadLine();
+        Console.Clear();
+        Console.WriteLine("Your choice: " + firstName.choice);
 
 
-        if (choiceOne != "1" && choiceOne != "2" && choiceOne != "3")
+        if (firstName.choice != "1" && firstName.choice != "2" && firstName.choice != "3")
         {
             Console.WriteLine("You did'nt pick right number");
             continue;
-           
+
         }
 
-        while (choiceOne == "1" || choiceOne == "2" || choiceOne == "3")
+        while (firstName.choice == "1" || firstName.choice == "2" || firstName.choice == "3")
         {
 
 
@@ -249,42 +243,42 @@ while (Option == "bot") // Player VS Computer
 
             Random rndChoice = new Random();
             int botChoice = rndChoice.Next(1, 4);
-            choiceTwo = botChoice.ToString();
-            Console.WriteLine(choiceTwo);
+            secondName.choice = botChoice.ToString();
+            Console.WriteLine("Boten Anna choose: " + secondName.choice);
             Console.ReadKey();
             break;
 
         }
 
-        if (choiceOne == choiceTwo)
+        if (firstName.choice == secondName.choice)
         {
             Console.WriteLine("Draw, no one was given any points");
             Console.WriteLine("Try agian!");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine(firstName.name + " Have: " + point1 + " point");
-            Console.WriteLine(playerTwo + " Have: " + point2 + " point");
+            Console.WriteLine(firstName.name + " Have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " Have: " + secondName.point + " point");
 
 
         }
         //// This gives player 1, 1 point
         else if
-            (choiceOne == "1" && choiceTwo == "3" ||
-            choiceOne == "2" && choiceTwo == "1" ||
-            choiceOne == "3" && choiceTwo == "2")
+            (firstName.choice == "1" && secondName.choice == "3" ||
+            firstName.choice == "2" && secondName.choice == "1" ||
+            firstName.choice == "3" && secondName.choice == "2")
         {
-            point1++;
-            Console.WriteLine(firstName.name + " wins and get one point! And have: " + point1 + " point");
-            Console.WriteLine(playerTwo + " loss and get no point! And have: " + point2 + " point");
+            firstName.point++;
+            Console.WriteLine(firstName.name + " wins and get one point! And have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " loss and get no point! And have: " + secondName.point + " point");
             Console.WriteLine();
             Console.WriteLine();
         }
 
         else // This gives player 2, 1 point
         {
-            point2++;
-            Console.WriteLine(firstName.name + " loss and get one point! And have: " + point1 + " point");
-            Console.WriteLine(playerTwo + " wins and get no point! And have: " + point2 + " point");
+            secondName.point++;
+            Console.WriteLine(firstName.name + " loss and get one point! And have: " + firstName.point + " point");
+            Console.WriteLine(playerTwo + " wins and get no point! And have: " + secondName.point + " point");
             Console.WriteLine();
             Console.WriteLine();
 
@@ -295,18 +289,13 @@ while (Option == "bot") // Player VS Computer
 
 
         // Reach the goal
-        if (point1 == 2 || point2 == 2)
+        if (firstName.point == 2 || secondName.point == 2)
         {
             break;
         }
 
-        choiceOne = string.Empty;
-        choiceTwo = string.Empty;
-
-
-       
-
-
+        firstName.choice = string.Empty;
+        secondName.choice = string.Empty;
 
     }
     break;
@@ -314,50 +303,20 @@ while (Option == "bot") // Player VS Computer
 
 
 
-if (point1 == 2)
+if (firstName.point == 2)
 {
     Console.Clear();
     Console.WriteLine(firstName.name + " wins the game!");
     Console.ReadKey();
 
 }
-if (point2 == 2)
+if (secondName.point == 2)
 {
     Console.Clear();
     Console.WriteLine(playerTwo + " wins the game!");
     Console.ReadKey();
 
 }
-
-
-
-
-
-//Random randomPlayer = Random.Next(playerTwo, playerOne);
-
-
-//Random round = new Random();
-//int start = 0;
-
-//start = round.Next(0, 2);
-
-
-
-//if (start == 0)
-//{
-//Console.WriteLine(playerOne.name1 + " starts!");
-
-//}
-//else if (start == 1)
-//{
-//Console.WriteLine(playerTwo.name2 + " starts!");
-//}
-
-
-
-
-
-
 
 
 

@@ -8,3 +8,10 @@
     }
 
 
+public enum result
+{
+    Win,
+    Draw,
+    Lose,
+}
+
